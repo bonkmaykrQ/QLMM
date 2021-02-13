@@ -57,6 +57,15 @@ namespace QLMM
             {
                 string loadedjson = File.ReadAllText(Variables.ConfigurationPath + "\\data.json");
                 Variables.ConfigurationData = JObject.Parse(loadedjson);
+
+                if (Variables.ConfigurationData["qlmm"]["sortByEnabled"] != null) {
+                    Variables.sortByEnabled = (bool)Variables.ConfigurationData["qlmm"]["sortByEnabled"];
+                } else
+                {
+                    Variables.ConfigurationData["qlmm"]["sortByEnabled"] = false;
+                    Variables.sortByEnabled = (bool)Variables.ConfigurationData["qlmm"]["sortByEnabled"];
+                }
+
                 SearchModsFolder((string)Variables.ConfigurationData["qlmm"]["ModsPath"]);
             }
             else {
@@ -68,7 +77,8 @@ namespace QLMM
                         qlmm = new
                         {
                             GamePath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\Quake Live\\quakelive_steam.exe",
-                            ModsPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\Quake Live\\baseq3\\"
+                            ModsPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\Quake Live\\baseq3\\",
+                            sortByEnabled = false
                         }
                     });
                     Variables.ConfigurationData = temp;
@@ -107,7 +117,18 @@ namespace QLMM
             int numberFailed2Parse = 0;                             // if this number is EVER above 0 then someone did a oopsie!
 
             try {
-                string[] foldercontents = Directory.GetFiles(path, "*.pk3*");
+                string[] enabledfoldercontents = Directory.GetFiles(path, "*.pk3", SearchOption.TopDirectoryOnly);
+                string[] disabledfoldercontents = Directory.GetFiles(path, "*.pk3.disabled", SearchOption.TopDirectoryOnly);
+                List<string> foldercontents = new List<string>();
+
+                foreach (string sortThis in enabledfoldercontents) {
+                    foldercontents.Add(sortThis);
+                }
+                foreach (string sortThis in disabledfoldercontents)
+                {
+                    foldercontents.Add(sortThis);
+                }
+                if (Variables.sortByEnabled == false) { foldercontents.Sort(); }
 
                 foreach (string currentpak in foldercontents) {
                     ModDefinition currentMod = new ModDefinition(currentpak);

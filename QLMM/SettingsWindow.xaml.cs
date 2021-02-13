@@ -30,6 +30,7 @@ namespace QLMM
             //Plant settings into fields
             this.GamePathBox.Text = (string)Variables.ConfigurationData["qlmm"]["GamePath"];
             this.ModsPathBox.Text = (string)Variables.ConfigurationData["qlmm"]["ModsPath"];
+            DoWeSort.IsChecked = Variables.sortByEnabled;
 
             if (Variables.WasShitFound == false)
             {
@@ -60,6 +61,7 @@ namespace QLMM
         {
             Variables.GamePath = GamePathBox.Text;
             Variables.ModsPath = ModsPathBox.Text;
+            Variables.sortByEnabled = (bool)DoWeSort.IsChecked;
 
             if (Variables.ModsPath.EndsWith("\\") == false)
             {
@@ -72,7 +74,8 @@ namespace QLMM
                 qlmm = new
                 {
                     GamePath = Variables.GamePath,
-                    ModsPath = Variables.ModsPath
+                    ModsPath = Variables.ModsPath,
+                    sortByEnabled = Variables.sortByEnabled
                 }
             });
 

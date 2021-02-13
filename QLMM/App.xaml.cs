@@ -59,5 +59,9 @@ namespace QLMM
         /// Variable that holds the Main Window for other windows to refer to.
         /// </summary>
         public static MainWindow QLMMWindow;
+        /// <summary>
+        /// If the user wants the enabled mods on the top.
+        /// </summary>
+        public static bool sortByEnabled = false;
     }
 }

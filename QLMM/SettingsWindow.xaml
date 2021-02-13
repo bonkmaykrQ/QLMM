@@ -19,6 +19,11 @@
                     <Label x:Name="Error_Line3" Content="" Margin="10,0,0,3" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="546" Foreground="Yellow"/>
                 </Grid>
             </TabItem>
+            <TabItem Header="Mods List" Foreground="Red" Background="Black">
+                <Grid Background="Black">
+                    <CheckBox x:Name="DoWeSort" Content="Sort mods from enabled to disabled" Margin="10,10,10,0" VerticalAlignment="Top" Background="White" Foreground="Red"/>
+                </Grid>
+            </TabItem>
             <TabItem Header="About" Background="Black" Foreground="Red">
                 <Grid Background="Black">
                     <Grid.RowDefinitions>
