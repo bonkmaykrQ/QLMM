@@ -121,6 +121,10 @@ namespace QLMM
                     if (name.StartsWith("\\")) {
                         name = name.Substring(1);
                     }
+                    if (name.EndsWith(".disabled"))
+                    {
+                        name = name.Remove(name.LastIndexOf(".disabled"));
+                    }
 
                     FileStream fileStream = new FileStream(currentpak, FileMode.Open, FileAccess.ReadWrite);
                     ZipFile zipFile = new ZipFile(fileStream);
@@ -208,8 +212,13 @@ namespace QLMM
             }
 
             foreach (ModDefinition currentMod in Variables.ModListingData) {
+                string isEnabledIndicator = "";
+
+                // maybe allow the user to disable this?
+                if (currentMod.IsDisabled == true) {isEnabledIndicator = " (Disabled)";}// else {isEnabledIndicator = " (Enabled)";}
+
                 ListBoxItem currentListItem = new ListBoxItem();
-                currentListItem.Content = currentMod.name;
+                currentListItem.Content = currentMod.name + isEnabledIndicator;
                 ModsList.Items.Add(currentListItem);
 
             }
