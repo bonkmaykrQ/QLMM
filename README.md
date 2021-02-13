@@ -14,7 +14,7 @@ Note that you may need to disable assembly signing in the project settings, and 
 idTech3 uses the ZIP format, often also labeled as PK3, to store game assets.  
   
 When importing, QLMM will ask you for which mod file you wish to import.  
-Assuming that said mod does not have readable metadata for QLMM to show to you, you will see the file name instead. In such a case, you may notice that the file name is completely different from the file you just imported. This is for two reasons:  
+If you were to look for said mod in the baseq3 folder, you may notice that the file name is completely different from the file you just imported. This is for two reasons:  
  - Quake Live's main assets are stored in pak00.pk3. Quake Live loads pk3s in a specific order, so naming your mod starting with pak01_whateverblahblah helps prevent the mods from being cancelled out by the game itself.
  - Some mods may have the same file name, so to prevent QLMM from overwriting one you already have, it will add a random number to the end of the file name, followed by the extension.  
 
