@@ -68,6 +68,9 @@
     <ManifestKeyFile>bonkmaykr.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GamebananaApi">
+      <HintPath>..\..\GB.Net\GB.Net Project\GamebananaApi\bin\Debug\GamebananaApi.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>.\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
@@ -174,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="uXwVAyL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="installer.iss" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

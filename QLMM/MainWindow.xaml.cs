@@ -118,6 +118,10 @@ namespace QLMM
                         currentMod.IsDisabled = true;               //
                     }                                               //
 
+                    if (name.StartsWith("\\")) {
+                        name = name.Substring(1);
+                    }
+
                     FileStream fileStream = new FileStream(currentpak, FileMode.Open, FileAccess.ReadWrite);
                     ZipFile zipFile = new ZipFile(fileStream);
 
@@ -149,12 +153,21 @@ namespace QLMM
                         }
                     }
 
+                    if (currentMod.author == "" || currentMod.author == null)
+                    {
+                        currentMod.author = "<unknown>";
+                    }
+                    if (currentMod.version == "" || currentMod.version == null)
+                    {
+                        currentMod.version = "<unknown>";
+                    }
+
                     // Filter out pre-installed pak files
-                    if (currentMod.name != "\\pak00.pk3" &&
-                        currentMod.name != "\\curry.pk3" &&
-                        currentMod.name != "\\bin.pk3" &&
-                        currentMod.name != "\\common-spog.pk3" &&
-                        currentMod.name != "\\common-q3map2.pk3")
+                    if (currentMod.name != "pak00.pk3" &&
+                        currentMod.name != "curry.pk3" &&
+                        currentMod.name != "bin.pk3" &&
+                        currentMod.name != "common-spog.pk3" &&
+                        currentMod.name != "common-q3map2.pk3")
                     {
                         Variables.ModListingData.Add(currentMod);
                     }
@@ -277,12 +290,17 @@ namespace QLMM
                 SelectedModPath = Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].path;
                 DeletingThisShorthand = Variables.ModListingData[ModsList.SelectedIndex].name;
 
+                string creationDate = File.GetCreationTime(Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].path).ToString();
+                string modificationDate = File.GetLastWriteTime(Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].path).ToString();
+
                 SelectionDetails.Document = new FlowDocument();
                 SelectionDetails.AppendText("QLMM by bonkmaykr\nSelect a mod from the list to view its information, or add a mod to the list using the \"Import Mod\" button below.");
                 SelectionDetails.AppendText("\n\nName: " + Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].name);
                 SelectionDetails.AppendText("\nAuthor: " + Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].author);
                 SelectionDetails.AppendText("\nVersion: " + Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].version);
-                SelectionDetails.AppendText("\nDescription: " + Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].description);
+                SelectionDetails.AppendText("\n\nLast Modified at " + creationDate);
+                SelectionDetails.AppendText("\nFirst Created at " + modificationDate);
+                SelectionDetails.AppendText("\n\n" + Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].description);
 
                 if (Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].IsDisabled == false) {
                     SelectionDetails.AppendText("\n\nThis mod is currently enabled.");
@@ -349,9 +367,49 @@ namespace QLMM
             {
                 Random rng = new Random();
                 int rng_result = rng.Next();
+
+                string oldName = explorer.SafeFileName;
+                bool shouldWeCreateJSON = false;
+                try
+                {
+                    FileStream stream = new FileStream(explorer.FileName, FileMode.Open);
+                    ZipFile zipStream = new ZipFile(stream);
+                    //JObject parse = new JObject();
+
+                    if (zipStream.ZipFileComment == "" || zipStream.ZipFileComment == null)
+                    {
+                        shouldWeCreateJSON = true;
+                    }
+
+                    zipStream.Close();
+                    stream.Close();
+                } catch (Exception bruhMoment)
+                {
+                    string doNothingLol = bruhMoment.Message;
+                }
+
                 if (File.Exists((string)Variables.ConfigurationData["qlmm"]["ModsPath"] + "pak01_" + rng_result + ".pk3") == false)
                 {
                     File.Copy(explorer.FileName, (string)Variables.ConfigurationData["qlmm"]["ModsPath"] + "pak01_" + rng_result + ".pk3");
+                }
+
+                if (shouldWeCreateJSON == true) {
+                    FileStream addToThis = new FileStream((string)Variables.ConfigurationData["qlmm"]["ModsPath"] + "pak01_" + rng_result + ".pk3", FileMode.OpenOrCreate);
+                    ZipFile add2zip = new ZipFile(addToThis);
+                    JObject newOutput = JObject.FromObject(new
+                    {
+                        qlmm = new
+                        {
+                            name = oldName
+                        }
+                    });
+
+                    add2zip.BeginUpdate();
+                    add2zip.SetComment(newOutput.ToString());
+                    add2zip.CommitUpdate();
+
+                    add2zip.Close();
+                    addToThis.Close();
                 }
 
                 SearchModsFolder((string)Variables.ConfigurationData["qlmm"]["ModsPath"]);
