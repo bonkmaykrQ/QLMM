@@ -33,9 +33,11 @@
                     <Image HorizontalAlignment="Left" Margin="10,40,0,40" Width="110" Source="qlmm.png"/>
                     <TextBlock Margin="130,0" TextWrapping="Wrap" Text="Quake Live Mod Manager by bonkmaykr" TextAlignment="Center" FontFamily="Segoe UI Black" Height="46" VerticalAlignment="Top" FontSize="16"/>
                     <TextBlock Margin="175,46,175,0" TextWrapping="Wrap" Text="Licensed under GNU GPL 3" TextAlignment="Center" FontFamily="Segoe UI Black" Foreground="#FFFF8080" Height="36" VerticalAlignment="Top"/>
-                    <TextBlock Margin="153,111,153,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Segoe UI Black" FontSize="14" Foreground="#FFFF8080" Height="36" VerticalAlignment="Top" Text="Uses Newtonsoft's JSON Library"/>
+                    <TextBlock Margin="153,111,153,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Segoe UI Black" FontSize="14" Foreground="#FFFF8080" Height="36" VerticalAlignment="Top" Text="Uses SharpZipLib by icsharpcode"/>
                     <TextBlock Margin="175,128,175,0" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Segoe UI Black" Foreground="#FFFF8080" Height="36" VerticalAlignment="Top" Text="Licensed under MIT License" FontSize="14"/>
-                    <TextBlock Margin="130,69,130,0" TextWrapping="Wrap" Text="bonkmaykrQ.github.io" TextAlignment="Center" FontFamily="Segoe UI Black" Height="36" VerticalAlignment="Top" FontSize="24"/>
+                    <TextBlock Margin="130,69,130,0" TextWrapping="Wrap" Text="bonkmaykrQ.github.io" TextAlignment="Center" FontFamily="Segoe UI Black" Height="36" VerticalAlignment="Top" FontSize="24" MouseDown="goToBMWebsite" Cursor="Hand"/>
+                    <Image Margin="298,147,228,3" Source="GitHub-Mark-Light-120px-plus.png" MouseDown="openGHpage" Cursor="Hand"/>
+                    <Image Margin="233,147,293,3" Source="icon_sheet.png" MouseDown="openGBPage" Cursor="Hand"/>
                 </Grid>
             </TabItem>
             <TabItem Background="Black" Foreground="Red" Header="License">

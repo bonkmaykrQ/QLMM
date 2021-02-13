@@ -94,5 +94,20 @@ namespace QLMM
             File.Delete(Variables.ConfigurationPath + "\\data.json");
             Application.Current.Shutdown();
         }
+
+        private void goToBMWebsite(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://bonkmaykrq.github.io");
+        }
+
+        private void openGBPage(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://gamebanana.com/tools/6969");
+        }
+
+        private void openGHpage(object sender, MouseButtonEventArgs e)
+        {
+            Process.Start("https://github.com/bonkmaykrQ/QLMM");
+        }
     }
 }

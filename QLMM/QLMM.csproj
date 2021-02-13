@@ -179,7 +179,12 @@
     <Resource Include="uXwVAyL.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="GitHub_Logo.png" />
+    <Resource Include="GitHub_Logo_White.png" />
+    <Resource Include="icon_sheet.png" />
+    <Resource Include="GitHub-Mark-Light-120px-plus.png" />
     <Content Include="installer.iss" />
+    <Resource Include="logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
