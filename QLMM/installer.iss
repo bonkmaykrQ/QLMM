@@ -40,7 +40,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "C:\Users\kangang\source\repos\QLMM\QLMM\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\{#BackExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\kangang\source\repos\QLMM\QLMM\bin\Release\GamebananaApi.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\GamebananaApi.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\Network.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\kangang\source\repos\QLMM\QLMM\bin\Release\ICSharpCode.SharpZipLib.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\kangang\source\repos\QLMM\QLMM\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

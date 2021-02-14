@@ -68,9 +68,6 @@
     <ManifestKeyFile>bonkmaykr.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GamebananaApi">
-      <HintPath>..\..\GB.Net\GB.Net Project\GamebananaApi\bin\Debug\GamebananaApi.dll</HintPath>
-    </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>.\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>

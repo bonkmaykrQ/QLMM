@@ -39,6 +39,9 @@
     <Reference Include="GamebananaApi">
       <HintPath>..\..\GB.Net\GB.Net Project\GamebananaApi\bin\Debug\GamebananaApi.dll</HintPath>
     </Reference>
+    <Reference Include="Network">
+      <HintPath>..\..\Network\Network\bin\Debug\net46\Network.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\QLMM\Newtonsoft.Json.dll</HintPath>
     </Reference>
