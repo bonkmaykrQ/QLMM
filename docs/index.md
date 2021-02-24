@@ -24,7 +24,7 @@ If you don't already have WINE and Winetricks installed, install them from your 
 
 Using Winetricks, select Select the default wineprefix > Install a Windows DLL or Component, and install `dotnet472` plus any other files you may need which you are missing.
 
-Run wine `QLMM_setup.exe` in the folder where you saved the installer, and follow the on-screen directions. Remember where you install the program to, or create a shortcut on your desktop.
+Run `wine QLMM_setup.exe` in the folder where you saved the installer, and follow the on-screen directions. Remember where you install the program to, or create a shortcut on your desktop.
 
 # Compatible Games
 QLMM currently has official support for:
