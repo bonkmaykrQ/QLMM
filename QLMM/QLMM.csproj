@@ -176,10 +176,12 @@
     <Resource Include="uXwVAyL.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="qlmm-long.svg" />
     <Resource Include="GitHub_Logo.png" />
     <Resource Include="GitHub_Logo_White.png" />
     <Resource Include="icon_sheet.png" />
     <Resource Include="GitHub-Mark-Light-120px-plus.png" />
+    <Resource Include="logo-name.png" />
     <Content Include="installer.iss" />
     <Resource Include="logo.png" />
   </ItemGroup>
