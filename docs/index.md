@@ -21,7 +21,7 @@ If you haven't already, install Visual Studio 2019, and any neccessary dependenc
     
 Open the .sln file with Visual Studio, and press F7.  
   
-Note that you may need to disable assembly signing in the project settings, and recompile the program dependencies without signing too, if the build fails due to signing or strong-name related problems. **Official builds from me will contain my certificate, so that you know that the version you are downloading was compiled and written by me, and has no malware in it.**
+Note that you may need to disable assembly signing in the project settings, and recompile the program dependencies without signing too, if the build fails due to signing or strong-name related problems.
 
 # Installation
 ## Windows
