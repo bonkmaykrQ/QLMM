@@ -1,13 +1,6 @@
 # Quake Live Mod Manager
 Free software mod manager for Quake Live, designed for Microsoft Windows 10.
 
-#### [← Back to Homepage](https://bonkmaykrq.github.io/)
-# ![](bitmap0.png)
-
-## [Get it on Gamebanana](https://gamebanana.com/tools/6969)
-  
-A mod manager for Quake Live.
-
 Written and compiled in VS2019 using C# and WPF.
 
 It works by scanning your game assets folder /baseq3/ for pk3 files and changing the file extension to disable/enable them, and also allowing you to view the metadata of each .pk3 by means of the pk3's package comments.
