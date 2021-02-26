@@ -1,7 +1,7 @@
 #### [← Back to Homepage](https://bonkmaykrq.github.io/)
 # ![](bitmap0.png)
 
-## [Get it on Gamebanana](https://gamebanana.com/tools/6969)
+## [Get it on Gamebanana](https://gamebanana.com/tools/6969) - [Direct Download](https://gamebanana.com/dl/520503)
   
 A mod manager for Quake Live.
 
