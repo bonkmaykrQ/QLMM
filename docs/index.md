@@ -49,7 +49,9 @@ Quake Live has out-of-box support, and if is installed to the right location QLM
 ## Warsow
 Warsow uses a custom version of the Quake II engine called QFusion, but it uses the same file formats as idTech3, so it is compatible with QLMM. However, the same issue with Quake III: Arena is here: a custom blacklist will be needed in order to hide the stock game files.  
   
-Keep in mind that Warsow organizes itself a little differently. In the game's install folder, the baseq3 folder is usually found at `Warfork.app\Contents\Resources\basewf\` as opposed to simply `baseq3\`.
+Keep in mind that Warsow organizes itself a little differently. In the game's install folder, the baseq3 folder is usually found at `Warfork.app\Contents\Resources\basewf\` as opposed to simply `baseq3\`.  
+  
+**You may need to extract the PK3's contents or else Warsow may override them with the default game files!**
 
 # Importing Mods
 idTech3 uses the ZIP format, often also labeled as PK3, to store game assets.  
