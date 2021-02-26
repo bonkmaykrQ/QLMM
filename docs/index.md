@@ -37,13 +37,19 @@ Run `wine QLMM_setup.exe` in the folder where you saved the installer, and follo
 # Compatible Games
 QLMM currently has official support for:
 - Quake III: Arena
-- Quake Live 
+- Quake Live
+- Warsow (or Warfork) 
 
 ## Quake III: Arena
 As of version 1.0.1.0, Quake III may show some extra files in the QLMM window that you did not install. This does not happen with Quake Live since Quake Live's default filenames are blacklisted from the file search. You can customize the blacklist in future versions to mitigate this problem, but until then, you should compile your own copy of QLMM if you want a custom blacklist.
 
 ## Quake Live
 Quake Live has out-of-box support, and if is installed to the right location QLMM will set everything up for you.
+
+## Warsow
+Warsow uses a custom version of the Quake II engine called QFusion, but it uses the same file formats as idTech3, so it is compatible with QLMM. However, the same issue with Quake III: Arena is here: a custom blacklist will be needed in order to hide the stock game files.  
+  
+Keep in mind that Warsow organizes itself a little differently. In the game's install folder, the baseq3 folder is usually found at Warfork.app\Contents\Resources\basewf\ as opposed to simply baseq3\.
 
 # Importing Mods
 idTech3 uses the ZIP format, often also labeled as PK3, to store game assets.  
