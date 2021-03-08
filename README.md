@@ -29,7 +29,7 @@ Open `QLMM_setup.exe` and follow the on-screen directions. Remember where you in
 ## Linux/Mac/BSD
 If you don't already have WINE and Winetricks installed, install them from your package manager of choice.
 
-Using Winetricks, select Select the default wineprefix > Install a Windows DLL or Component, and install `dotnet472` plus any other files you may need which you are missing.
+Using Winetricks, select Select the default wineprefix > Install a Windows DLL or Component, and install `dotnet472` plus any other files you may need which you are missing. If you run into any problems during installation, [please read the troubleshooting tips on WineHQ's AppDB for workarounds](https://appdb.winehq.org/objectManager.php?sClass=version&iId=35264).
 
 Run `wine QLMM_setup.exe` in the folder where you saved the installer, and follow the on-screen directions. Remember where you install the program to, or create a shortcut on your desktop.
 
@@ -48,7 +48,7 @@ Quake Live has out-of-box support, and if is installed to the right location QLM
 ## Warsow
 Warsow uses a custom version of the Quake II engine called QFusion, but it uses the same file formats as idTech3, so it is compatible with QLMM. However, the same issue with Quake III: Arena is here: a custom blacklist will be needed in order to hide the stock game files.  
   
-Keep in mind that Warsow organizes itself a little differently. In the game's install folder, the baseq3 folder is usually found at `Warfork.app\Contents\Resources\basewf\` as opposed to simply `baseq3\`.  
+Keep in mind that Warsow organizes itself a little differently. In the game's install folder, the baseq3 folder is usually found at `fvi-launcher\applications\warfork\Warfork.app\Contents\Resources\basewf\` as opposed to simply `baseq3\`.  
   
 **You may need to extract the PK3's contents or else Warsow may override them with the default game files!**
 
