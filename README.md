@@ -50,7 +50,7 @@ Warfork uses a custom version of the Quake II engine called QFusion, but it uses
   
 Keep in mind that Warfork organizes itself a little differently. In the game's install folder, the baseq3 folder is usually found at `fvi-launcher\applications\warfork\Warfork.app\Contents\Resources\basewf\` as opposed to simply `baseq3\`.  
   
-**You may need to extract the PK3's contents or else Warsow may override them with the default game files!**
+**You may need to extract the PK3's contents or else Warfork may override them with the default game files!**
 
 # Importing Mods
 idTech3 uses the ZIP format, often also labeled as PK3, to store game assets.  
