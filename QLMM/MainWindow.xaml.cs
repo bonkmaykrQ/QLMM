@@ -44,6 +44,7 @@ namespace QLMM
         {
             InitializeComponent();
             Variables.QLMMWindow = this;
+            this.Show(); // triggered automatically in older builds. Why it didn't work this time is beyond me.
             SelectionDetails.AppendText("QLMM by bonkmaykr\nSelect a mod from the list to view its information, or add a mod to the list using the \"Import Mod\" button below.");
             listData = ModsList.Items;
 
@@ -78,7 +79,8 @@ namespace QLMM
                         {
                             GamePath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\Quake Live\\quakelive_steam.exe",
                             ModsPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\Quake Live\\baseq3\\",
-                            sortByEnabled = false
+                            sortByEnabled = false,
+                            pureBypass = false
                         }
                     });
                     Variables.ConfigurationData = temp;
@@ -88,9 +90,108 @@ namespace QLMM
                 }
                 else {
                     Variables.WasShitFound = false;
+
+                    // I forgot to do this in the earlier builds, and it 
+                    // caused a NullReferenceException in the JSON library.
+                    // 
+                    // Placeholder settings must be set before the Settings
+                    // Window is opened, otherwise, the data will return
+                    // null when the settings window attempts to load it.
+                    JObject temp = JObject.FromObject(new
+                    {
+                        qlmm = new
+                        {
+                            GamePath = "",
+                            ModsPath = "",
+                            sortByEnabled = false,
+                            pureBypass = false
+                        }
+                    });
+                    Variables.ConfigurationData = temp;
+
                     OpenSettings();
                 }
             }
+
+            // for next update -- please??
+
+            /*if (File.Exists(Variables.ConfigurationPath + "\\data_oldquake.json") == true)
+            {
+                string loadedjson = File.ReadAllText(Variables.ConfigurationPath + "\\data_oldquake.json");
+                Variables.OldQuakeConfigurationData = JObject.Parse(loadedjson);
+//
+                if (Variables.OldQuakeConfigurationData["qlmm"]["sortByEnabled"] != null)
+                {
+                    Variables.sortByEnabled = (bool)Variables.OldQuakeConfigurationData["qlmm"]["sortByEnabled"];
+                }
+                else
+                {
+                    Variables.OldQuakeConfigurationData["qlmm"]["sortByEnabled"] = false;
+                    Variables.sortByEnabled = (bool)Variables.OldQuakeConfigurationData["qlmm"]["sortByEnabled"];
+                }
+
+                SearchModsFolder((string)Variables.OldQuakeConfigurationData["qlmm"]["ModsPath"]);
+            }
+            else
+            {
+                // Create a configuration file for first-time program launch.
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\Quake 3 Arena\\quake3.exe") == true)
+                {
+                    JObject temp = JObject.FromObject(new
+                    {
+                        qlmm = new
+                        {
+                            GamePath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\Quake 3 Arena\\quake3.exe",
+                            ModsPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\Quake 3 Arena\\baseq3\\",
+                            sortByEnabled = false,
+                            pureBypass = false
+                        }
+                    });
+                    Variables.OldQuakeConfigurationData = temp;
+                    Directory.CreateDirectory(Variables.ConfigurationPath);
+                    File.WriteAllText(Variables.ConfigurationPath + "\\data_oldquake.json", temp.ToString());
+                    SearchModsFolder((string)Variables.ConfigurationData["qlmm"]["ModsPath"]);
+                }
+            }
+
+            if (File.Exists(Variables.ConfigurationPath + "\\data_warfork.json") == true)
+            {
+                string loadedjson = File.ReadAllText(Variables.ConfigurationPath + "\\data_warfork.json");
+                Variables.WarforkConfigurationData = JObject.Parse(loadedjson);
+
+                if (Variables.WarforkConfigurationData["qlmm"]["sortByEnabled"] != null)
+                {
+                    Variables.sortByEnabled = (bool)Variables.WarforkConfigurationData["qlmm"]["sortByEnabled"];
+                }
+                else
+                {
+                    Variables.WarforkConfigurationData["qlmm"]["sortByEnabled"] = false;
+                    Variables.sortByEnabled = (bool)Variables.WarforkConfigurationData["qlmm"]["sortByEnabled"];
+                }
+
+                //SearchModsFolder((string)Variables.ConfigurationData["qlmm"]["ModsPath"]);
+            }
+            else
+            {
+                // Create a configuration file for first-time program launch.
+                if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\fvi\\fvi-launcher\\applications\\warfork\\Warfork.app\\Contents\\Resources\\warfork_x64.exe") == true)
+                {
+                    JObject temp = JObject.FromObject(new
+                    {
+                        qlmm = new
+                        {
+                            GamePath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\fvi\\fvi-launcher\\applications\\warfork\\Warfork.app\\Contents\\Resources\\warfork_x64.exe",
+                            ModsPath = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86) + "\\Steam\\steamapps\\common\\fvi\\fvi-launcher\\applications\\warfork\\Warfork.app\\Contents\\Resources\\basewf\\",
+                            sortByEnabled = false,
+                            pureBypass = true
+                        }
+                    });
+                    Variables.WarforkConfigurationData = temp;
+                    Directory.CreateDirectory(Variables.ConfigurationPath);
+                    File.WriteAllText(Variables.ConfigurationPath + "\\data_warfork.json", temp.ToString());
+                    SearchModsFolder((string)Variables.ConfigurationData["qlmm"]["ModsPath"]);
+                }
+            }*/
 
             //MainWindow1.Closed += new RoutedEventHandler(Shutdown);
         }
@@ -320,6 +421,9 @@ namespace QLMM
                 SelectedModPath = Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].path;
                 DeletingThisShorthand = Variables.ModListingData[ModsList.SelectedIndex].name;
 
+                //int realnameStart = SelectedModPath.LastIndexOf("\\");
+                string realname = SelectedModPath.Substring(SelectedModPath.LastIndexOf("\\")).Substring(1);
+
                 string creationDate = File.GetCreationTime(Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].path).ToString();
                 string modificationDate = File.GetLastWriteTime(Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].path).ToString();
 
@@ -328,6 +432,7 @@ namespace QLMM
                 SelectionDetails.AppendText("\n\nName: " + Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].name);
                 SelectionDetails.AppendText("\nAuthor: " + Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].author);
                 SelectionDetails.AppendText("\nVersion: " + Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].version);
+                SelectionDetails.AppendText("\nFile: " + realname);
                 SelectionDetails.AppendText("\n\nLast Modified at " + creationDate);
                 SelectionDetails.AppendText("\nFirst Created at " + modificationDate);
                 SelectionDetails.AppendText("\n\n" + Variables.ModListingData[((System.Windows.Controls.ListBox)sender).SelectedIndex].description);
@@ -418,13 +523,13 @@ namespace QLMM
                     string doNothingLol = bruhMoment.Message;
                 }
 
-                if (File.Exists((string)Variables.ConfigurationData["qlmm"]["ModsPath"] + "pak01_" + rng_result + ".pk3") == false)
+                if (File.Exists((string)Variables.ConfigurationData["qlmm"]["ModsPath"] + "pak01_" + oldName + rng_result + ".pk3") == false)
                 {
-                    File.Copy(explorer.FileName, (string)Variables.ConfigurationData["qlmm"]["ModsPath"] + "pak01_" + rng_result + ".pk3");
+                    File.Copy(explorer.FileName, (string)Variables.ConfigurationData["qlmm"]["ModsPath"] + "pak01_" + oldName + rng_result + ".pk3");
                 }
 
                 if (shouldWeCreateJSON == true) {
-                    FileStream addToThis = new FileStream((string)Variables.ConfigurationData["qlmm"]["ModsPath"] + "pak01_" + rng_result + ".pk3", FileMode.OpenOrCreate);
+                    FileStream addToThis = new FileStream((string)Variables.ConfigurationData["qlmm"]["ModsPath"] + "pak01_" + oldName + rng_result + ".pk3", FileMode.OpenOrCreate);
                     ZipFile add2zip = new ZipFile(addToThis);
                     JObject newOutput = JObject.FromObject(new
                     {
@@ -476,6 +581,21 @@ namespace QLMM
             }
 
             SearchModsFolder((string)Variables.ConfigurationData["qlmm"]["ModsPath"]);
+        }
+
+        private void swapper_warfork_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void swapper_oldquake_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void swapper_newquake_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -28,14 +28,15 @@ namespace QLMM
             InitializeComponent();
 
             //Plant settings into fields
-            this.GamePathBox.Text = (string)Variables.ConfigurationData["qlmm"]["GamePath"];
-            this.ModsPathBox.Text = (string)Variables.ConfigurationData["qlmm"]["ModsPath"];
-            DoWeSort.IsChecked = Variables.sortByEnabled;
+                this.GamePathBox.Text = (string)Variables.ConfigurationData["qlmm"]["GamePath"];
+                this.ModsPathBox.Text = (string)Variables.ConfigurationData["qlmm"]["ModsPath"];
+                DoWeSort.IsChecked = Variables.sortByEnabled;
 
             if (Variables.WasShitFound == false)
             {
-                Error.Content = "QLMM failed to find the required files.";
-                Error_Line2.Content = "Please locate them and paste their locations here.";
+                Error.Content = "QLMM failed to find Quake Live. Please locate it and paste it's location here.";
+                //Error_Line2.Content = "If you are using this for another game, ignore this message.";
+                Error_Line2.Content = "For other games, please read the QLMM documentation.";
                 Error_Line3.Content = "Game Path should be the game's EXE. Mod Path should be your baseq3 folder.";
             }
             else {
@@ -92,6 +93,8 @@ namespace QLMM
         private void RevertButton_Click(object sender, RoutedEventArgs e)
         {
             File.Delete(Variables.ConfigurationPath + "\\data.json");
+            File.Delete(Variables.ConfigurationPath + "\\data_oldquake.json");
+            File.Delete(Variables.ConfigurationPath + "\\data_warfork.json");
             Application.Current.Shutdown();
         }
 

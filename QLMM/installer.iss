@@ -41,7 +41,17 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "C:\Users\kangang\source\repos\QLMM\QLMM\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\{#BackExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\GamebananaApi.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\Network.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\Network.dll"; DestDir: "{app}"; Flags: ignoreversion        
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\EasyHttp.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\GalaSoft.MvvmLight.dll"; DestDir: "{app}"; Flags: ignoreversion               
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\GalaSoft.MvvmLight.Extras.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\GalaSoft.MvvmLight.Platform.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\InTheHand.Net.Personal.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\JsonFx.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\ServiceLocation.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\System.ValueTuple.dll"; DestDir: "{app}"; Flags: ignoreversion      
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\System.Windows.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\kangang\source\repos\QLMM\QLMMbackend\bin\Release\Extensions.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\kangang\source\repos\QLMM\QLMM\bin\Release\ICSharpCode.SharpZipLib.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\kangang\source\repos\QLMM\QLMM\bin\Release\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

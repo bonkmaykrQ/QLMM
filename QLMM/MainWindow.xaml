@@ -92,6 +92,19 @@
                 </Button.Background>
             </Button>
         </Grid>
+        <Grid HorizontalAlignment="Left" Height="0" Margin="10,6,0,0" VerticalAlignment="Top" Width="523" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Button x:Name="swapper_newquake" Content="Quake Live" VerticalAlignment="Top" Height="30" Margin="0,0,443,0" Click="swapper_newquake_Click" Background="Black" BorderBrush="Red" Foreground="Red"/>
+            <Button x:Name="swapper_oldquake" Content="Quake 3" Margin="85,0,358,0" VerticalAlignment="Top" Height="30" Click="swapper_oldquake_Click" Foreground="Red" BorderBrush="Red" Background="Black"/>
+            <Button x:Name="swapper_warfork" Content="Warfork" Margin="170,0,273,0" VerticalAlignment="Top" Height="30" Click="swapper_warfork_Click" Background="Black" BorderBrush="Red" Foreground="Red"/>
+        </Grid>
 
     </Grid>
 </Window>

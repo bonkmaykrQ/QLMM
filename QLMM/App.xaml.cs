@@ -51,6 +51,14 @@ namespace QLMM
         /// </summary>
         public static JObject ConfigurationData = null;
         /// <summary>
+        /// Settings file contents
+        /// </summary>
+        public static JObject OldQuakeConfigurationData = null;
+        /// <summary>
+        /// Settings file contents
+        /// </summary>
+        public static JObject WarforkConfigurationData = null;
+        /// <summary>
         /// Tells the Settings menu wether or not the game files were able to be automatically discovered.
         /// <para>See: <seealso cref="Window1.Window1"/></para>
         /// </summary>
@@ -63,5 +71,9 @@ namespace QLMM
         /// If the user wants the enabled mods on the top.
         /// </summary>
         public static bool sortByEnabled = false;
+        /// <summary>
+        /// Enables Pure Bypass mode for Warfork
+        /// </summary>
+        public static bool pureBypass = false;
     }
 }
